@@ -1,0 +1,22 @@
+
+
+services:
+  backend:
+    build: ./backend/shop-pc-api             # đường dẫn tới thư mục chứa Dockerfile backend
+    container_name: backend
+    ports:
+      - "5000:5000"              # ánh xạ cổng backend ra ngoài
+    restart: always
+    environment:
+      - NODE_ENV=production
+      - PORT=5000
+
+  frontend:
+    build: ./frontend/pc-shop               # <--- thêm dòng này để build từ mã nguồn
+    image: devops
+    container_name: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: always
