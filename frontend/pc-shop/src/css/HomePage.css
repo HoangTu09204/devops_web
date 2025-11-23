@@ -1,0 +1,230 @@
+/* --- NAVIGATION BAR --- */
+.navbar {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 16px 32px;
+  background-color: #fff;
+  border-bottom: 1px solid #e0e0e0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* --- BANNER CHÍNH --- */
+.banner-carousel {
+  width: 100%;
+  overflow: hidden;
+}
+
+.banner-slide {
+  width: 100%;
+  position: relative;
+}
+
+.banner-slide img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.showroom-label {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* --- SUB-BANNERS --- */
+.sub-banners {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+.sub-banner-item img {
+  width: 100%;
+  max-width: 400px;
+  height: 180px; /* đặt chiều cao cố định */
+  object-fit: cover; /* cắt ảnh cho vừa khung */
+  aspect-ratio: 2 / 1; /* giúp đảm bảo tỷ lệ hình ảnh */
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+/* --- HOME CONTAINER --- */
+.homepage-container {
+  padding: 20px 32px;
+  background-color: #f9f9f9;
+  margin-top: 24px;
+}
+
+/* --- HEADER CỦA CÁC MỤC DANH MỤC --- */
+.carousel-header,
+.homepage-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.homepage-title {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+
+.view-all-link,
+.toggle-view-btn {
+  background: none;
+  border: none;
+  color: #1e88e5;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* --- DANH SÁCH SẢN PHẨM (DẠNG GRID MẶC ĐỊNH) --- */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  justify-content: center;
+}
+
+/* --- CHẾ ĐỘ SCROLL NGANG (KHI XEM TẤT CẢ) --- */
+.product-list.horizontal-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  gap: 24px;
+  scroll-behavior: smooth;
+  padding-bottom: 8px;
+}
+
+.product-list.horizontal-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.product-list.horizontal-scroll::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.product-list.horizontal-scroll .product-card {
+  flex: 0 0 auto;
+  width: 240px;
+}
+
+/* --- SẢN PHẨM CAROUSEL NGANG --- */
+.carousel-products {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+/* --- THẺ SẢN PHẨM --- */
+.product-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+.product-card img {
+  width: 100%;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.product-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.product-link h3 {
+  font-size: 16px;
+  margin: 6px 0;
+  color: #222;
+}
+
+.price {
+  color: #e53935;
+  font-weight: bold;
+  margin: 4px 0;
+}
+
+.add-to-cart-btn {
+  margin-top: 8px;
+  padding: 6px 12px;
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.add-to-cart-btn:hover {
+  background-color: #1565c0;
+}
+
+/* --- NÚT CAROUSEL --- */
+.carousel-btn {
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  color: #333;
+  align-self: center;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 1024px) {
+  .product-card {
+    width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-card {
+    width: 100%;
+  }
+
+  .carousel-products {
+    gap: 10px;
+  }
+
+  .product-card img {
+    height: 130px;
+  }
+
+  .homepage-title {
+    font-size: 18px;
+  }
+
+  .view-all-link,
+  .toggle-view-btn {
+    font-size: 14px;
+  }
+}

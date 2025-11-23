@@ -1,0 +1,70 @@
+/* Thêm vào cuối file HomePage.css hoặc tạo file mới và import vào */
+.product-detail-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 60vh;
+  background: #f8f9fa;
+  padding: 40px 0;
+}
+
+.product-detail-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 32px #0001;
+  display: flex;
+  gap: 36px;
+  padding: 36px 32px;
+  max-width: 900px;
+  width: 100%;
+}
+
+.product-detail-image {
+  width: 340px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f0f0f0;
+  box-shadow: 0 2px 12px #0001;
+}
+
+.product-detail-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.product-detail-info h2 {
+  margin-top: 0;
+  margin-bottom: 18px;
+  font-size: 2rem;
+  color: #222;
+}
+
+.product-detail-price {
+  color: #e53935;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.product-detail-desc {
+  margin-top: 18px;
+  color: #444;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  .product-detail-card {
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 8px;
+    gap: 18px;
+  }
+  .product-detail-image {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+  }
+}

@@ -1,0 +1,148 @@
+/* Container chính */
+.admin-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 32px 24px;
+}
+
+/* Tiêu đề */
+.admin-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 28px;
+  color: #1976d2;
+  letter-spacing: 1px;
+}
+
+/* Bảng */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+  border-radius: 8px;
+  overflow: hidden;
+  table-layout: fixed; /* giúp cột cân bằng */
+  background: #fafbfc;
+}
+
+.admin-table th,
+.admin-table td {
+  border: 1px solid #e0e0e0;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 0.95rem;
+  word-wrap: break-word;
+}
+
+.admin-table th {
+  background: #1976d2;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Input trong bảng */
+.admin-input {
+  width: 100%;
+  padding: 4px 6px;
+  border: 1px solid #bdbdbd;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  background: #f7f9fa;
+  transition: all 0.2s;
+  box-sizing: border-box;
+}
+
+.admin-input:focus {
+  border: 1.5px solid #1976d2;
+  outline: none;
+  background: #fff;
+}
+
+/* Ảnh thu nhỏ */
+.admin-thumb {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Nút thao tác */
+.admin-btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin: 2px;
+  transition: all 0.2s;
+}
+
+.admin-btn.add {
+  background: #1976d2;
+  color: #fff;
+}
+
+.admin-btn.update {
+  background: #43a047;
+  color: #fff;
+}
+
+.admin-btn.delete {
+  background: #e53935;
+  color: #fff;
+}
+
+.admin-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Form thêm/sửa */
+.admin-add-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Subtitle */
+.admin-subtitle {
+  margin: 32px 0 12px 0;
+  color: #1976d2;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Responsive nhẹ */
+@media (max-width: 1024px) {
+  .admin-table th, .admin-table td {
+    font-size: 0.85rem;
+    padding: 6px 8px;
+  }
+  .admin-thumb {
+    width: 50px;
+    height: 50px;
+  }
+  .admin-btn {
+    font-size: 0.8rem;
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-table {
+    display: block;
+    overflow-x: auto;
+  }
+  .admin-table th, .admin-table td {
+    white-space: nowrap;
+  }
+}
