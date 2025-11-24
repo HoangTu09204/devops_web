@@ -11,7 +11,7 @@ function CategoryPage() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/products?category=${categoryName}`)
+      .get(`https://devops-api-2.onrender.com/api/products?category=${categoryName}`)
       .then((res) => setProducts(res.data))
       .catch((err) => console.error(err));
   }, [categoryName]);

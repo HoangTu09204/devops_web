@@ -13,7 +13,7 @@ function SearchResults() {
   useEffect(() => {
     const fetchResults = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/products?search=${query}`);
+        const res = await axios.get(`https://devops-api-2.onrender.com/api/products?search=${query}`);
         setResults(res.data);
       } catch (error) {
         console.error('Lỗi khi tìm sản phẩm:', error);

@@ -35,6 +35,28 @@ function CheckoutPage() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  // 🟦 QUAN TRỌNG — Kiểm tra VNPay trả về
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const code = query.get("vnp_ResponseCode");
+
+    if (code === "00") {
+
+      const cartKey = user ? `cart_${user.id}` : 'cart_guest';
+
+      localStorage.removeItem(cartKey);
+
+      localStorage.setItem("vnpay_success", "true");
+
+      // ⭐ Trigger update UI toàn site
+      window.dispatchEvent(new Event("storage"));
+
+      alert("🎉 Thanh toán thành công! Giỏ hàng đã được làm mới.");
+
+      navigate('/cart');
+    }
+  }, [user, navigate]);
+
   // 🔹 Lấy giỏ hàng đúng theo user hoặc guest
   useEffect(() => {
     const cartKey = user ? `cart_${user.id}` : 'cart_guest';
@@ -70,24 +92,34 @@ function CheckoutPage() {
         ...form
       };
 
+      // COD
       if (form.payment === "cod") {
-        const response = await axios.post(`/orders`, orderData, {
+        await axios.post(`/orders`, orderData, {
           headers: { Authorization: `Bearer ${token}` }
         });
+
         alert("🎉 Đặt hàng thành công!");
         const cartKey = user ? `cart_${user.id}` : 'cart_guest';
         localStorage.removeItem(cartKey);
         setCart([]);
+
+        window.dispatchEvent(new Event("storage"));
+
         navigate('/');
-      } else if (form.payment === "bank") {
+      }
+
+      // 🟦 Thanh toán VNPay
+      else if (form.payment === "bank") {
         const res = await axios.post('/orders/vnpay', orderData, {
           headers: { Authorization: `Bearer ${token}` }
         });
+
         if (res.data.paymentUrl) {
           localStorage.setItem('vnpay_pending', JSON.stringify({
             orderData: res.data.orderData,
             txnRef: res.data.txnRef
           }));
+
           window.location.href = res.data.paymentUrl;
         }
       }
@@ -109,6 +141,7 @@ function CheckoutPage() {
         {/* Giỏ hàng */}
         <div style={{ marginBottom: 24, background: "#f7f7fa", borderRadius: 8, padding: 16 }}>
           <h3 style={{ marginBottom: 12 }}>Sản phẩm trong đơn hàng</h3>
+
           {cart.length === 0 ? (
             <p>Không có sản phẩm nào trong giỏ hàng.</p>
           ) : (
@@ -127,6 +160,7 @@ function CheckoutPage() {
               ))}
             </ul>
           )}
+
           <div style={{ borderTop: "1px solid #e0e0e0", marginTop: 12, paddingTop: 10, textAlign: "right" }}>
             <div style={{ fontSize: "1rem", marginBottom: 4 }}>
               Tổng tạm tính: <b>{total.toLocaleString()} VND</b>
@@ -156,7 +190,7 @@ function CheckoutPage() {
             </label>
             <label>
               <input type="radio" name="payment" value="bank" checked={form.payment === "bank"} onChange={handleChange} />
-              Chuyển khoản
+              Chuyển khoản (VNPay)
             </label>
           </div>
 

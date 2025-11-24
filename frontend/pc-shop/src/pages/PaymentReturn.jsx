@@ -50,7 +50,18 @@ const PaymentReturn = () => {
           setStatus("success");
           setMessage("Thanh toán thành công!");
           localStorage.removeItem("vnpay_pending");
-          localStorage.removeItem("cart");
+          const user = JSON.parse(localStorage.getItem("userInfo"));
+            if (user) {
+              localStorage.removeItem(`cart_${user.id}`);
+            } else {
+              localStorage.removeItem("cart_guest");
+            }
+
+            localStorage.setItem("vnpay_success", "true");
+
+            // Cập nhật UI toàn site
+            window.dispatchEvent(new Event("storage"));
+
         } else {
           setStatus("error");
           setMessage(response.data.message || "Thanh toán thất bại.");
